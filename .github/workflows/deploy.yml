@@ -21,13 +21,18 @@ jobs:
 
       - name: Install Zola
         run: |
-          # Downloads the latest stable Zola binary
-          curl -L "https://github.com/getzola/zola/releases/latest/download/zola-v0.19.2-x86_64-unknown-linux-gnu.tar.gz" | tar -xz
+          # Define the specific version
+          ZOLA_VERSION=0.19.2
+          # Download using -L (follow redirects) and -f (fail on server errors)
+          curl -L -f -o zola.tar.gz "https://github.com/getzola/zola/releases/download/v${ZOLA_VERSION}/zola-v${ZOLA_VERSION}-x86_64-unknown-linux-gnu.tar.gz"
+          # Extract the binary
+          tar -xvf zola.tar.gz
+          # Move it to the system path
           sudo mv zola /usr/local/bin/
 
       - name: Build Site
         run: |
-          # Use --config zola.toml to force Zola to use your specific file
+          # Explicitly target your zola.toml file
           zola --config zola.toml build
 
       - name: Upload Artifacts
