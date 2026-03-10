@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} - {{ config.title }}{% endblock title %}
+
+{% block content %}
+<article class="prose prose-invert lg:prose-xl max-w-none">
+    <header class="mb-8 border-b border-slate-700 pb-4">
+        <h1 class="text-4xl font-bold text-white mb-2">{{ page.title }}</h1>
+        <time class="text-slate-500">{{ page.date | date(format="%B %e, %Y") }}</time>
+    </header>
+
+    <div class="post-content">
+        {# This line is the "Main" function of your page #}
+        {{ page.content | safe }}
+    </div>
+</article>
+{% endblock content %}
