@@ -11,6 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build with Zola
+        run: |
+          zola --config zola.toml build
         uses: shalzz/zola-deploy-action@v0.19.2
         env:
           BUILD_DIR: .
